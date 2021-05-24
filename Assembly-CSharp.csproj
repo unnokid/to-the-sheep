@@ -60,7 +60,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\MapController.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
+    <Compile Include="Assets\Scripts\CollisionCheck.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Cartoon Temple Building Kit\ReadMe.txt" />

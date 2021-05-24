@@ -38,14 +38,14 @@ public class MapController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A))
         {
             
-            Rotation(Lvect, 90.0f);
+            Rotation(Lvect, Left);
             Move();
 
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
 
-            Rotation(Rvect, -90.0f);
+            Rotation(Rvect, Right);
             Move();
 
         }
@@ -60,14 +60,14 @@ public class MapController : MonoBehaviour
             
             if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
             {
-                Debug.Log("거리 조절");
-                length = 8.5f;
+                //Debug.Log("거리 조절");
+                length = 8.0f;
                 Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
             }
             else
             {
-                Debug.Log("어디여1");
+                //Debug.Log("어디여1");
                 length = Vector3.Distance(sheep.transform.position, line.transform.position);
                 Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
@@ -78,14 +78,14 @@ public class MapController : MonoBehaviour
         {
             if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
             {
-                Debug.Log("거리 조절");
-                length = 8.5f;
+                //Debug.Log("거리 조절");
+                length = 8.0f;
                 Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
             }
             else
             {
-                Debug.Log("어디여2");
+                //Debug.Log("어디여2");
                 length = Vector3.Distance(sheep.transform.position, line.transform.position);
                 Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
