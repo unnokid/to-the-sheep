@@ -12,6 +12,7 @@ public class MapController : MonoBehaviour
 
     public GameObject line;
     public GameObject sheep;
+    public Rigidbody rigid;
 
     
     private Quaternion rot;
@@ -27,7 +28,7 @@ public class MapController : MonoBehaviour
     void Start()
     {
         //test = Quaternion.identity;
-        
+        rigid = sheep.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -81,16 +82,26 @@ public class MapController : MonoBehaviour
         //Debug.Log(Tvect);
         rot.eulerAngles = Tvect;
         go.transform.rotation *= rot;
-            
+
         //test.eulerAngles += new Vector3(0.0f, number, 0.0f);
         //go.transform.rotation *= test;
         //Debug.Log(test.eulerAngles);
+
+        rigid.useGravity = false;
+        Invoke("useGravity", 0.3f);
+        //Debug.Log("sheep 중력 off");
         for (float f = 100f; f >= -0.05f; f -= 0.05f)
         {
             go.transform.rotation = Quaternion.Slerp(go.transform.rotation, rot, 5 * Time.deltaTime);
             yield return new WaitForSeconds(0.005f);
         }
         
+        //Debug.Log("sheep 중력 on");
+    }
+
+    public void useGravity()
+    {
+        rigid.useGravity = true;
     }
 
 }
