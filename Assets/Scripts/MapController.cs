@@ -9,105 +9,65 @@ public class MapController : MonoBehaviour
     public GameObject target2;
     public GameObject target3;
     public GameObject target4;
-    public Transform Tg;
+
+    public GameObject line;
+    public GameObject sheep;
+
+    
     private Quaternion rot;
-    private Quaternion test;
-    private Quaternion test2;
+    //private Quaternion test;
     Vector3 Lvect = new Vector3(0, 90, 0);
     Vector3 Rvect = new Vector3(0, -90, 0);
     Vector3 Tvect = new Vector3(0, 0, 0);
-    float angle =0.0f;
     float Total;
     float Left = 90.0f;
     float Right = -90.0f;
-
-    float sum=180;
+    float length;
+    
     void Start()
     {
         //test = Quaternion.identity;
-        Tg = target1.transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if((sum%360)/90 == 0)
-        {
-            go.transform.LookAt(target1.transform);
-        }
-        else if ((sum % 360) / 90 == 1)
-        {
-            go.transform.LookAt(target2.transform);
-        }
-        else if ((sum % 360) / 90 == 2)
-        {
-            go.transform.LookAt(target3.transform);
-        }
-        else if ((sum % 360) / 90 == 3)
-        {
-            go.transform.LookAt(target4.transform);
-        }*/
         
         if (Input.GetKeyUp(KeyCode.A))
         {
-            //sum += 90;
             
             Rotation(Lvect, 90.0f);
-            //Look(Left);
-            
+            Move();
+
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-            //sum -= 90;
-           
-            //Look(Right);
+
             Rotation(Rvect, -90.0f);
+            Move();
 
         }
     }
 
-    public void Look(float number)
+    public void Move()
     {
-        float number2;
-        if ((Total%360) / 90 == 0)
-        {
-            //360,0도
-            number2 = 0;
-            StartCoroutine(Lookat(target3,number2));
-        }
-        else if ((Total % 360) / 90 == 1)
-        {
-            //90도
-            number2 = 90;
-            StartCoroutine(Lookat(target4, number2));
-        }
-        else if ((Total % 360) % 90 == 2)
-        {
-            //180도
-            number2 = 180;
-            StartCoroutine(Lookat(target1, number2));
-        }
-        else if ((Total % 360) % 90 == 3)
-        {
-            //270도
-            number2 = 270;
-            StartCoroutine(Lookat(target2, number2));
-        }
+        //가운데 기준 캐릭터 이동  x만 움직임
+        line.transform.position = new Vector3(0, sheep.transform.position.y,sheep.transform.position.z);
+        length = Vector3.Distance(sheep.transform.position,line.transform.position);
         
-    }
-
-    private IEnumerator Lookat(GameObject target, float number)
-    {
-
-        /*test2 = Quaternion.identity;
-        target.transform.eulerAngles = new Vector3(0, number, 0);
-        for (float f = 100f; f >= -0.05f; f -= 0.05f)
+        if (sheep.transform.position.x > 0.0f)
         {
-            go.transform.rotation = Quaternion.Slerp(go.transform.rotation, target.transform.rotation*//*rot*//*, 5 * Time.deltaTime);
-            yield return new WaitForSeconds(0.05f);
-        }*/
-        yield return new WaitForSeconds(0.05f);
+            Vector3 targetVect = new Vector3(-length,line.transform.position.y,line.transform.position.z );
+            sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+        }
+        else
+        {
+            Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
+            sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+        }
     }
+
     public void Rotation( Vector3 vect, float f)
     {
         StartCoroutine(Rotate(vect, f));
@@ -118,14 +78,13 @@ public class MapController : MonoBehaviour
     {
         rot = Quaternion.identity;
         Tvect = Tvect+vect;
-        Debug.Log(Tvect);
+        //Debug.Log(Tvect);
         rot.eulerAngles = Tvect;
         go.transform.rotation *= rot;
             
         //test.eulerAngles += new Vector3(0.0f, number, 0.0f);
         //go.transform.rotation *= test;
-
-        Debug.Log(test.eulerAngles);
+        //Debug.Log(test.eulerAngles);
         for (float f = 100f; f >= -0.05f; f -= 0.05f)
         {
             go.transform.rotation = Quaternion.Slerp(go.transform.rotation, rot, 5 * Time.deltaTime);
