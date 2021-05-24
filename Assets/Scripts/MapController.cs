@@ -19,7 +19,7 @@ public class MapController : MonoBehaviour
     //private Quaternion test;
     Vector3 Lvect = new Vector3(0, 90, 0);
     Vector3 Rvect = new Vector3(0, -90, 0);
-    Vector3 Tvect = new Vector3(0, 0, 0);
+    Vector3 Tvect = new Vector3(0, 180, 0);
     float Total;
     float Left = 90.0f;
     float Right = -90.0f;
@@ -55,17 +55,41 @@ public class MapController : MonoBehaviour
     {
         //가운데 기준 캐릭터 이동  x만 움직임
         line.transform.position = new Vector3(0, sheep.transform.position.y,sheep.transform.position.z);
-        length = Vector3.Distance(sheep.transform.position,line.transform.position);
-        
         if (sheep.transform.position.x > 0.0f)
         {
-            Vector3 targetVect = new Vector3(-length,line.transform.position.y,line.transform.position.z );
-            sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+            
+            if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
+            {
+                Debug.Log("거리 조절");
+                length = 8.5f;
+                Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
+                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+            }
+            else
+            {
+                Debug.Log("어디여1");
+                length = Vector3.Distance(sheep.transform.position, line.transform.position);
+                Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
+                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+            }
+            
         }
         else
         {
-            Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
-            sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+            if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
+            {
+                Debug.Log("거리 조절");
+                length = 8.5f;
+                Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
+                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+            }
+            else
+            {
+                Debug.Log("어디여2");
+                length = Vector3.Distance(sheep.transform.position, line.transform.position);
+                Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
+                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+            }
         }
     }
 
