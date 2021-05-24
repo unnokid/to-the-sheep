@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
-    public Transform target;        // 따라다닐 타겟 오브젝트의 Transform
-
-    private Transform tr;                // 카메라 자신의 Transform
+    public GameObject sheep;        // 따라다닐 타겟 오브젝트의 Transform
 
     void Start()
     {
-        tr = GetComponent<Transform>();
+        
     }
 
-    void LateUpdate()
+    void Update()
     {
-        tr.position = new Vector3(target.position.x + 0.52f, tr.position.y, target.position.z + 16.0f);
+        Vector3 targetVect = new Vector3(sheep.transform.position.x, sheep.transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(this.transform.position, targetVect, 1.0f);
 
         //tr.LookAt(target);
     }
