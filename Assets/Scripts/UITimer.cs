@@ -36,7 +36,7 @@ public class UITimer : MonoBehaviour
         }
     }
 
-    private void End_Timer()
+    public void End_Timer()
     {
         Debug.Log("End");
         time_current = time_Max;
@@ -45,7 +45,7 @@ public class UITimer : MonoBehaviour
     }
 
 
-    private void Reset_Timer()
+    public void Reset_Timer()
     {
         time_start = Time.time;
         time_current = 0;
