@@ -103,35 +103,19 @@ public class cshPlayerController : MonoBehaviour
     {
         //collision
         
-        //Debug.Log("콜리션 들어감");
+        Debug.Log("콜리션 들어감");
         if (collision.gameObject.tag=="Map" && (transform.position.y < collision.gameObject.transform.position.y))
         {
             collision.collider.isTrigger = true;
-            //Debug.Log("위로 충돌");
+            Debug.Log("위로 충돌");
         }
         if(collision.gameObject.tag == "Map" && (transform.position.y >collision.gameObject.transform.position.y ))
         {
-            //Debug.Log("아래로 충돌");
+            Debug.Log("아래로 충돌");
             isjump = false;
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        //Debug.Log("콜리션 검사중");
-        if (collision.gameObject.tag == "Map" && (transform.position.y < collision.gameObject.transform.position.y))
-        {
-            collision.collider.isTrigger = true;
-            //Debug.Log("위로 충돌");
-        }
-    }
-
-    public void upstand()
-    {
-       
-        //Debug.Log("점프충전완료");
-        
-    }
 
     public bool isdead()
     { 

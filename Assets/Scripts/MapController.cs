@@ -27,12 +27,19 @@ public class MapController : MonoBehaviour
     {
         //test = Quaternion.identity;
         rigid = sheep.GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameObject.Find("GameManager").GetComponent<UITimer>().isTimeup())
+        {
+
+        }
+
+
+
         if (Input.GetKeyUp(KeyCode.A))
         {
            
@@ -138,4 +145,5 @@ public class MapController : MonoBehaviour
     }
 
   
+
 }

@@ -62,6 +62,8 @@
     <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\MapController.cs" />
     <Compile Include="Assets\Scripts\Deadline.cs" />
+    <Compile Include="Assets\Scripts\GameFinish.cs" />
+    <Compile Include="Assets\Scripts\UITimer.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Cartoon Temple Building Kit\ReadMe.txt" />
