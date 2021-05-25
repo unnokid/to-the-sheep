@@ -14,13 +14,11 @@ public class MapController : MonoBehaviour
     public GameObject sheep;
     public Rigidbody rigid;
 
-    
     private Quaternion rot;
     //private Quaternion test;
     Vector3 Lvect = new Vector3(0, 90, 0);
     Vector3 Rvect = new Vector3(0, -90, 0);
     Vector3 Tvect = new Vector3(0, 180, 0);
-    float Total;
     float Left = 90.0f;
     float Right = -90.0f;
     float length;
@@ -37,14 +35,14 @@ public class MapController : MonoBehaviour
         
         if (Input.GetKeyUp(KeyCode.A))
         {
-            
+           
             Rotation(Lvect, Left);
             Move();
 
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-
+           
             Rotation(Rvect, Right);
             Move();
 
@@ -103,24 +101,35 @@ public class MapController : MonoBehaviour
     {
         rot = Quaternion.identity;
         Tvect = Tvect+vect;
-        //Debug.Log(Tvect);
+        if(Tvect.y >180.0f)
+        {
+            Tvect.y -= 360.0f;
+        }
+        else if(Tvect.y <- 180.0f)
+        {
+            Tvect.y += 360.0f;
+        }
+        Debug.Log(Tvect);
         rot.eulerAngles = Tvect;
+        Debug.Log(rot + "rot");
+        Debug.Log(rot.eulerAngles + "rot.eulerAngles");
         go.transform.rotation *= rot;
+        Debug.Log(go.transform.rotation + "go.transform.rotation");
 
-        //test.eulerAngles += new Vector3(0.0f, number, 0.0f);
-        //go.transform.rotation *= test;
-        //Debug.Log(test.eulerAngles);
 
         rigid.useGravity = false;
         Invoke("useGravity", 0.3f);
-        //Debug.Log("sheep 중력 off");
         for (float f = 100f; f >= -0.05f; f -= 0.05f)
         {
+            if(GameObject.Find("sheep").GetComponent<cshPlayerController>().isdead())
+            {
+                break;
+            }
             go.transform.rotation = Quaternion.Slerp(go.transform.rotation, rot, 5 * Time.deltaTime);
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.0005f);
         }
-        
-        //Debug.Log("sheep 중력 on");
+
+        GameObject.Find("sheep").GetComponent<cshPlayerController>().setdead(false);
     }
 
     public void useGravity()
@@ -128,4 +137,5 @@ public class MapController : MonoBehaviour
         rigid.useGravity = true;
     }
 
+  
 }

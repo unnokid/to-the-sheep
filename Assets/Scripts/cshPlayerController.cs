@@ -9,7 +9,7 @@ public class cshPlayerController : MonoBehaviour
     Rigidbody rigid;
     public float jumppower;
     private bool isjump = false;
-
+    private bool dead = false;
     private RaycastHit hit1;
     private RaycastHit hit2;
     // Start is called before the first frame update
@@ -52,7 +52,7 @@ public class cshPlayerController : MonoBehaviour
             //sheep_animator.SetBool("jump", true);
             rigid.AddForce(Vector3.up * jumppower,ForceMode.Impulse);
             isjump = true;
-            Debug.Log("점프");
+            //Debug.Log("점프");
             //sheep_animator.SetBool("jump", true);
             //Invoke("Jumpcool", 2.0f);
         }
@@ -103,15 +103,15 @@ public class cshPlayerController : MonoBehaviour
     {
         //collision
         
-        Debug.Log("콜리션 들어감");
+        //Debug.Log("콜리션 들어감");
         if (collision.gameObject.tag=="Map" && (transform.position.y < collision.gameObject.transform.position.y))
         {
             collision.collider.isTrigger = true;
-            Debug.Log("위로 충돌");
+            //Debug.Log("위로 충돌");
         }
         if(collision.gameObject.tag == "Map" && (transform.position.y >collision.gameObject.transform.position.y ))
         {
-            Debug.Log("아래로 충돌");
+            //Debug.Log("아래로 충돌");
             isjump = false;
         }
     }
@@ -122,14 +122,24 @@ public class cshPlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Map" && (transform.position.y < collision.gameObject.transform.position.y))
         {
             collision.collider.isTrigger = true;
-            Debug.Log("위로 충돌");
+            //Debug.Log("위로 충돌");
         }
     }
 
     public void upstand()
     {
        
-        Debug.Log("점프충전완료");
+        //Debug.Log("점프충전완료");
         
+    }
+
+    public bool isdead()
+    { 
+        return dead;
+    }
+
+    public void setdead(bool d)
+    {
+        dead = d;
     }
 }

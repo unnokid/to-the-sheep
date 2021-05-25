@@ -57,10 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\cshPlayerController.cs" />
+    <Compile Include="Assets\Scripts\CollisionCheck.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\MapController.cs" />
-    <Compile Include="Assets\Scripts\CollisionCheck.cs" />
+    <Compile Include="Assets\Scripts\Deadline.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Cartoon Temple Building Kit\ReadMe.txt" />
