@@ -17,7 +17,10 @@ public class UITimer : MonoBehaviour
     void Update()
     {
         if (isEnded)
+        {
             return;
+        }
+            
 
         Check_Timer();
     }
@@ -47,6 +50,7 @@ public class UITimer : MonoBehaviour
 
     public void Reset_Timer()
     {
+        
         time_start = Time.time;
         time_current = 0;
         text_Timer.text = $"{time_current:N2}";
@@ -57,10 +61,26 @@ public class UITimer : MonoBehaviour
     public void Timeup()
     {
         isEnded = true;
+        StartCoroutine(ShowReady());
     }
     
     public bool isTimeup()
     {
         return isEnded;
+    }
+
+    IEnumerator ShowReady()
+    {
+
+        while (isEnded)
+        {
+            
+            text_Timer.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            text_Timer.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+           
+        }
+
     }
 }

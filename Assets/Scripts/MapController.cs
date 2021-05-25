@@ -65,14 +65,14 @@ public class MapController : MonoBehaviour
             
             if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
             {
-                //Debug.Log("거리 조절");
+              
                 length = 8.0f;
                 Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
             }
             else
             {
-                //Debug.Log("어디여1");
+               
                 length = Vector3.Distance(sheep.transform.position, line.transform.position);
                 Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
@@ -83,14 +83,14 @@ public class MapController : MonoBehaviour
         {
             if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
             {
-                //Debug.Log("거리 조절");
+              
                 length = 8.0f;
                 Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
             }
             else
             {
-                //Debug.Log("어디여2");
+              
                 length = Vector3.Distance(sheep.transform.position, line.transform.position);
                 Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
@@ -116,12 +116,12 @@ public class MapController : MonoBehaviour
         {
             Tvect.y += 360.0f;
         }
-        Debug.Log(Tvect);
+        //Debug.Log(Tvect);
         rot.eulerAngles = Tvect;
-        Debug.Log(rot + "rot");
-        Debug.Log(rot.eulerAngles + "rot.eulerAngles");
+        //Debug.Log(rot + "rot");
+        //Debug.Log(rot.eulerAngles + "rot.eulerAngles");
         go.transform.rotation *= rot;
-        Debug.Log(go.transform.rotation + "go.transform.rotation");
+        //Debug.Log(go.transform.rotation + "go.transform.rotation");
 
 
         rigid.useGravity = false;

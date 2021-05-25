@@ -20,11 +20,6 @@ public class cshPlayerController : MonoBehaviour
 
 
     }
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -49,18 +44,14 @@ public class cshPlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !isjump /*!sheep_animator.GetBool("jump")*/)
         {
-            //sheep_animator.SetBool("jump", true);
             rigid.AddForce(Vector3.up * jumppower,ForceMode.Impulse);
             isjump = true;
-            //Debug.Log("점프");
-            //sheep_animator.SetBool("jump", true);
-            //Invoke("Jumpcool", 2.0f);
+          
         }
-        
-        
+
     }
 
-    private void FixedUpdate()
+   /* private void FixedUpdate()
     {
         Vector3 uppoint = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
         //Debug.DrawRay(rigid.position, Vector3.down* 1.0f, new Color(0, 1, 0));
@@ -71,47 +62,22 @@ public class cshPlayerController : MonoBehaviour
         RaycastHit2D rayHitdown = Physics2D.Raycast(rigid.position, Vector3.down, 1.0f);
         if (Physics.Raycast(transform.position, -transform.up, out hit1,0.01f))
         {
-            //Debug.Log(hit1.collider.name);
-            //Debug.Log("hit");
-            //Debug.Log("바닿에 닿음");
-            //Invoke("Jumpcool", 1.0f);
+           
             if(rayHitdown.distance < 0.05f)
             {
-                //Debug.Log("바닿에 닿음");
-                //isjump = true;
                 sheep_animator.SetBool("jump", false);
-                //Invoke("Jumpcool", 0.003f);
             }
         }
+    }*/
 
-
-        if (Physics.Raycast(uppoint, transform.up, out hit2, 0.3f))
-        {
-            //Debug.Log(hit2.collider.name);
-            
-            //Debug.Log("hit");
-        }
-    }
-
-    public void Jumpcool()
-    {
-        //sheep_animator.SetBool("jump", false);
-        Debug.Log("점프충전완료");
-        isjump = false;
-    }
     private void OnCollisionEnter(Collision collision)
     {
         //collision
         
-        Debug.Log("콜리션 들어감");
-        if (collision.gameObject.tag=="Map" && (transform.position.y < collision.gameObject.transform.position.y))
-        {
-            collision.collider.isTrigger = true;
-            Debug.Log("위로 충돌");
-        }
+        //Debug.Log("콜리션 들어감");
         if(collision.gameObject.tag == "Map" && (transform.position.y >collision.gameObject.transform.position.y ))
         {
-            Debug.Log("아래로 충돌");
+            //Debug.Log("아래로 충돌");
             isjump = false;
         }
     }
