@@ -31,7 +31,7 @@ public class UITimer : MonoBehaviour
         if (time_current < time_Max)
         {
             text_Timer.text = $"{time_current:N2}";
-            
+            text_Timer.gameObject.SetActive(true);
         }
         else if (!isEnded)
         {
@@ -50,7 +50,7 @@ public class UITimer : MonoBehaviour
 
     public void Reset_Timer()
     {
-        
+        text_Timer.gameObject.SetActive(true);
         time_start = Time.time;
         time_current = 0;
         text_Timer.text = $"{time_current:N2}";
