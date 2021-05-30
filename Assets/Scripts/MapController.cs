@@ -5,17 +5,12 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     public GameObject go;
-    public GameObject target1;
-    public GameObject target2;
-    public GameObject target3;
-    public GameObject target4;
 
     public GameObject line;
     public GameObject sheep;
     public Rigidbody rigid;
 
     private Quaternion rot;
-    //private Quaternion test;
     Vector3 Lvect = new Vector3(0, 90, 0);
     Vector3 Rvect = new Vector3(0, -90, 0);
     Vector3 Tvect = new Vector3(0, 180, 0);
@@ -33,12 +28,6 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.Find("GameManager").GetComponent<UITimer>().isTimeup())
-        {
-
-        }
-
-
 
         if (Input.GetKeyUp(KeyCode.A))
         {
