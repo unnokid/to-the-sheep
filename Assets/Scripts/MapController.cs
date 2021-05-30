@@ -5,12 +5,11 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     public GameObject go;
-
     public GameObject line;
     public GameObject sheep;
     public Rigidbody rigid;
-
     private Quaternion rot;
+
     Vector3 Lvect = new Vector3(0, 90, 0);
     Vector3 Rvect = new Vector3(0, -90, 0);
     Vector3 Tvect = new Vector3(0, 180, 0);
@@ -20,9 +19,7 @@ public class MapController : MonoBehaviour
     
     void Start()
     {
-        //test = Quaternion.identity;
         rigid = sheep.GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
@@ -105,17 +102,14 @@ public class MapController : MonoBehaviour
         {
             Tvect.y += 360.0f;
         }
-        //Debug.Log(Tvect);
         rot.eulerAngles = Tvect;
-        //Debug.Log(rot + "rot");
-        //Debug.Log(rot.eulerAngles + "rot.eulerAngles");
         go.transform.rotation *= rot;
-        //Debug.Log(go.transform.rotation + "go.transform.rotation");
+       
 
 
         rigid.useGravity = false;
         Invoke("useGravity", 0.3f);
-        for (float f = 100f; f >= -0.05f; f -= 0.05f)
+        for (float f = 50f; f >= -0.05f; f -= 0.05f)
         {
             if(GameObject.Find("sheep").GetComponent<cshPlayerController>().isdead())
             {
@@ -124,7 +118,6 @@ public class MapController : MonoBehaviour
             go.transform.rotation = Quaternion.Slerp(go.transform.rotation, rot, 5 * Time.deltaTime);
             yield return new WaitForSeconds(0.0005f);
         }
-
         GameObject.Find("sheep").GetComponent<cshPlayerController>().setdead(false);
     }
 
