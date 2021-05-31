@@ -23,6 +23,7 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(total % 360+"total");
         go.transform.rotation = Quaternion.Lerp(go.transform.rotation, target.transform.rotation, Time.deltaTime * rotatespeed);
         if (Input.GetKeyUp(KeyCode.A))
         {
@@ -100,6 +101,11 @@ public class MapController : MonoBehaviour
         rigid.useGravity = true;
     }
 
+    public float GetTotal()
+    {
+
+        return total % 360;
+    }
   
 
 }
