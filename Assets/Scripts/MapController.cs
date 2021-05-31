@@ -8,15 +8,13 @@ public class MapController : MonoBehaviour
     public GameObject line;
     public GameObject sheep;
     public Rigidbody rigid;
-    private Quaternion rot;
+    public GameObject target;
 
-    Vector3 Lvect = new Vector3(0, 90, 0);
-    Vector3 Rvect = new Vector3(0, -90, 0);
-    Vector3 Tvect = new Vector3(0, 180, 0);
     float Left = 90.0f;
     float Right = -90.0f;
     float length;
-    
+    float total = 180.0f;
+    public float rotatespeed = 1.0f;
     void Start()
     {
         rigid = sheep.GetComponent<Rigidbody>();
@@ -25,26 +23,32 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        go.transform.rotation = Quaternion.Lerp(go.transform.rotation, target.transform.rotation, Time.deltaTime * rotatespeed);
         if (Input.GetKeyUp(KeyCode.A))
         {
-           
-            Rotation(Lvect, Left);
+            total += Left;
+            target.transform.rotation = Quaternion.Euler(0, total, 0);
             Move();
 
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-           
-            Rotation(Rvect, Right);
+            total += Right;
+            target.transform.rotation = Quaternion.Euler(0, total, 0);
             Move();
 
+        }
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            GameObject.Find("Deadline").GetComponent<Deadline>().ResetMap();
+            GameObject.Find("GameManager").GetComponent<UITimer>().Reset_Timer();
         }
     }
 
     public void Move()
     {
         //가운데 기준 캐릭터 이동  x만 움직임
+        rigid.useGravity = false;
         line.transform.position = new Vector3(0, sheep.transform.position.y,sheep.transform.position.z);
         if (sheep.transform.position.x > 0.0f)
         {
@@ -82,43 +86,13 @@ public class MapController : MonoBehaviour
                 sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
             }
         }
-    }
-
-    public void Rotation( Vector3 vect, float f)
-    {
-        StartCoroutine(Rotate(vect, f));
-        
-    }
-
-    IEnumerator Rotate(Vector3 vect, float number)
-    {
-        rot = Quaternion.identity;
-        Tvect = Tvect+vect;
-        if(Tvect.y >180.0f)
-        {
-            Tvect.y -= 360.0f;
-        }
-        else if(Tvect.y <- 180.0f)
-        {
-            Tvect.y += 360.0f;
-        }
-        rot.eulerAngles = Tvect;
-        go.transform.rotation *= rot;
-       
-
-
-        rigid.useGravity = false;
         Invoke("useGravity", 0.3f);
-        for (float f = 50f; f >= -0.05f; f -= 0.05f)
-        {
-            if(GameObject.Find("sheep").GetComponent<cshPlayerController>().isdead())
-            {
-                break;
-            }
-            go.transform.rotation = Quaternion.Slerp(go.transform.rotation, rot, 5 * Time.deltaTime);
-            yield return new WaitForSeconds(0.0005f);
-        }
-        GameObject.Find("sheep").GetComponent<cshPlayerController>().setdead(false);
+    }
+
+    public void Restart()
+    {
+        total = 180.0f;
+        target.transform.rotation = Quaternion.Euler(0, total, 0);
     }
 
     public void useGravity()

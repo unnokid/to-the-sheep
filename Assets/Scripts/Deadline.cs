@@ -13,16 +13,15 @@ public class Deadline : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            GameObject.Find("sheep").GetComponent<cshPlayerController>().setdead(true);
-            map.transform.localEulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+
+            GameObject.Find("GameManager").GetComponent<MapController>().Restart();
             col.gameObject.transform.position = CheckPoint.transform.position;
         }
     }
 
     public void ResetMap()
     {
-        GameObject.Find("sheep").GetComponent<cshPlayerController>().setdead(true);
-        map.transform.localEulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+        GameObject.Find("GameManager").GetComponent<MapController>().Restart();
         sheep.transform.position = CheckPoint.transform.position;
     }
 }
