@@ -13,7 +13,7 @@ public class Deadline : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-
+            
             GameObject.Find("GameManager").GetComponent<MapController>().Restart();
             col.gameObject.transform.position = CheckPoint.transform.position;
         }

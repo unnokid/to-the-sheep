@@ -15,6 +15,9 @@ public class MapController : MonoBehaviour
     float length;
     float total = 180.0f;
     public float rotatespeed = 1.0f;
+
+    private bool rightrotate=false;
+    private bool leftrotate = false;
     void Start()
     {
         rigid = sheep.GetComponent<Rigidbody>();
@@ -25,21 +28,30 @@ public class MapController : MonoBehaviour
     {
         //Debug.Log(total % 360+"total");
         go.transform.rotation = Quaternion.Lerp(go.transform.rotation, target.transform.rotation, Time.deltaTime * rotatespeed);
-        if (Input.GetKeyUp(KeyCode.A))
+        
+        if (Input.GetKeyDown(KeyCode.A) && go.transform.rotation == target.transform.rotation)
         {
+            StopCoroutine("Moving");
+            Invoke("useGravity", 0.1f);
+            leftrotate = true;
+            Move();
             total += Left;
             target.transform.rotation = Quaternion.Euler(0, total, 0);
-            Move();
-
-        }
-        if (Input.GetKeyUp(KeyCode.D))
+            
+            
+}
+        if (Input.GetKeyDown(KeyCode.D) && go.transform.rotation == target.transform.rotation)
         {
+            StopCoroutine("Moving");
+            Invoke("useGravity", 0.1f);
+            rightrotate = true;
+            Move();
             total += Right;
             target.transform.rotation = Quaternion.Euler(0, total, 0);
-            Move();
-
+            
+            
         }
-        if(Input.GetKeyUp(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             GameObject.Find("Deadline").GetComponent<Deadline>().ResetMap();
             GameObject.Find("GameManager").GetComponent<UITimer>().Reset_Timer();
@@ -51,45 +63,56 @@ public class MapController : MonoBehaviour
         //가운데 기준 캐릭터 이동  x만 움직임
         rigid.useGravity = false;
         line.transform.position = new Vector3(0, sheep.transform.position.y,sheep.transform.position.z);
+        length = 8.0f;
         if (sheep.transform.position.x > 0.0f)
         {
-            
-            if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
+            Vector3 targetVect;
+            if(rightrotate)//오른쪽회전했니?
             {
-              
-                length = 8.0f;
-                Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
-                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+                targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
+                rightrotate = false;
+                //sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 10.0f);
+                StartCoroutine(Moving(targetVect));
             }
-            else
+            else if (leftrotate)
             {
-               
-                length = Vector3.Distance(sheep.transform.position, line.transform.position);
-                Vector3 targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
-                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+                targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
+                StartCoroutine(Moving(targetVect));
+                //sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 10.0f);
             }
-            
         }
         else
         {
-            if (sheep.transform.position.x > 9.0f || sheep.transform.position.x < -9.0f)
+            Vector3 targetVect;
+            if (rightrotate)//오른쪽회전했니?
             {
-              
-                length = 8.0f;
-                Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
-                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+                targetVect = new Vector3(-length, line.transform.position.y, line.transform.position.z);
+                rightrotate = false;
+                StartCoroutine(Moving(targetVect));
+                //sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 10.0f);
             }
-            else
+            else if (leftrotate)
             {
-              
-                length = Vector3.Distance(sheep.transform.position, line.transform.position);
-                Vector3 targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
-                sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 1.0f);
+                targetVect = new Vector3(length, line.transform.position.y, line.transform.position.z);
+                StartCoroutine(Moving(targetVect));
+                //sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 10.0f);
             }
         }
         Invoke("useGravity", 0.3f);
     }
 
+    IEnumerator Moving(Vector3 targetVect)
+    {
+        
+        while (Vector3.Distance(sheep.transform.position, targetVect) > 1.0f)
+        {
+            sheep.transform.position = Vector3.Lerp(sheep.transform.position, targetVect, 10.0f * Time.deltaTime);
+
+            yield return null;
+
+        }
+        Invoke("useGravity", 0.3f);
+    }
     public void Restart()
     {
         total = 180.0f;
