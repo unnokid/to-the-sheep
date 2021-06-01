@@ -9,7 +9,7 @@ public class cshPlayerController : MonoBehaviour
     Rigidbody rigid;
     public float jumppower;
     private bool isjump = false;
-
+    public float movespeed;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -24,14 +24,12 @@ public class cshPlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-            this.transform.Translate(0.0f, 0.0f, 0.03f);
+            
             sheep_animator.SetBool("walk", true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
-            this.transform.Translate(0.0f, 0.0f, 0.03f);
+          
             sheep_animator.SetBool("walk", true);
         }
         else
@@ -39,16 +37,33 @@ public class cshPlayerController : MonoBehaviour
             sheep_animator.SetBool("walk", false);
         }
 
-
         if (Input.GetKeyDown(KeyCode.Space) && !isjump)
         {
             rigid.AddForce(Vector3.up * jumppower, ForceMode.Impulse);
             isjump = true;
 
         }
-
     }
 
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+            this.transform.Translate(0.0f, 0.0f, movespeed);
+          
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+            this.transform.Translate(0.0f, 0.0f, movespeed);
+            
+        }
+     
+
+
+       
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
