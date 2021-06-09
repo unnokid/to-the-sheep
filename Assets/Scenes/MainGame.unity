@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 124996032}
   - component: {fileID: 124996033}
   - component: {fileID: 124996034}
+  - component: {fileID: 124996035}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -667,6 +668,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_Timer: {fileID: 394624416}
+--- !u!114 &124996035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124996031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e567b3a7e79874d8e75bc47e34511b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameclearPanel: {fileID: 578093048}
 --- !u!1 &165240094
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +874,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 169258620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124996035}
+        m_TargetAssemblyTypeName: ScenesController, Assembly-CSharp
+        m_MethodName: returnStartScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &169258620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,7 +2211,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 811187515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 165240099}
+        m_TargetAssemblyTypeName: Deadline, Assembly-CSharp
+        m_MethodName: ResetMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 124996034}
+        m_TargetAssemblyTypeName: UITimer, Assembly-CSharp
+        m_MethodName: Reset_Timer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 124996035}
+        m_TargetAssemblyTypeName: ScenesController, Assembly-CSharp
+        m_MethodName: closeClearPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &811187515
 MonoBehaviour:
   m_ObjectHideFlags: 0

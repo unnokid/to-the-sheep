@@ -63,11 +63,12 @@
     <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\cshPlayerController.cs" />
     <Compile Include="Assets\Scripts\Deadline.cs" />
+    <Compile Include="Assets\Scripts\SecretTwo.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UITimer.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\MapController.cs" />
-    <Compile Include="Assets\Scripts\SecretTwo.cs" />
+    <Compile Include="Assets\Scripts\ScenesController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
