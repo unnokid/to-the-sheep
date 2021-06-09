@@ -9,6 +9,7 @@ public class UITimer : MonoBehaviour
     private float time_current;
     private float time_Max = 100000.0f;
     private bool isEnded;
+    private bool isTimerout=false;
 
     private void Start()
     {
@@ -71,16 +72,20 @@ public class UITimer : MonoBehaviour
 
     IEnumerator ShowReady()
     {
-
-        while (isEnded)
+        if(!isTimerout)
         {
-            
-            text_Timer.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            text_Timer.gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
-           
+            isTimerout = true;
+            while (isEnded)
+            {
+
+                text_Timer.gameObject.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                text_Timer.gameObject.SetActive(false);
+                yield return new WaitForSeconds(0.5f);
+
+            }
         }
+       
 
     }
 }
