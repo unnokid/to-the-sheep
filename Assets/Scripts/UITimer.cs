@@ -70,6 +70,11 @@ public class UITimer : MonoBehaviour
         return isEnded;
     }
 
+    public float getTime()
+    {
+        return time_current;
+    }
+
     IEnumerator ShowReady()
     {
         if(!isTimerout)

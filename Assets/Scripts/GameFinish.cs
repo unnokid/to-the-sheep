@@ -10,7 +10,7 @@ public class GameFinish : MonoBehaviour
         {
             Debug.Log("∞‘¿”≥°");
             GameObject.Find("GameManager").GetComponent<UITimer>().Timeup();
-            
+            GameObject.Find("GameManager").GetComponent<ScenesController>().openClearPanel();
         }
     }
    

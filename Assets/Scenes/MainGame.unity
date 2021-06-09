@@ -681,6 +681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameclearPanel: {fileID: 578093048}
+  Cleartime: {fileID: 323127134}
+  time_current: 0
 --- !u!1 &165240094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &578093049
 RectTransform:
   m_ObjectHideFlags: 0
