@@ -14,7 +14,7 @@ public class Secretground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() == number || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() == -number)
+        if (GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() % 360 == number || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() % 360 == number-360)
         {
             gameObject.GetComponent<BoxCollider>().enabled =true;
         }

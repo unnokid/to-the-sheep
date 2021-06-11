@@ -15,8 +15,8 @@ public class SecretTwo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() == number1 || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() == -number1
-            || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() == number2 || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() == -number2)
+        if (GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() % 360 == number1 || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() % 360 == number1 - 360
+            || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() % 360 == number2 || GameObject.Find("GameManager").GetComponent<MapController>().GetTotal() % 360 == -number2)
         {
             gameObject.GetComponent<BoxCollider>().enabled = true;
         }

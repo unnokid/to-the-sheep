@@ -26,7 +26,7 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(total % 360+"total");
+        Debug.Log(total +"total");
         go.transform.rotation = Quaternion.Lerp(go.transform.rotation, target.transform.rotation, Time.deltaTime * rotatespeed);
         
         if (Input.GetKeyDown(KeyCode.A) && go.transform.rotation == target.transform.rotation)
