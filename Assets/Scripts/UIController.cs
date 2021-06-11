@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && isLoaded)
+        if(Input.GetKeyDown(KeyCode.Space) && isLoaded)
         {
             sceneChange = true;
             SceneManager.LoadScene("MainGame");
@@ -77,4 +77,12 @@ public class UIController : MonoBehaviour
         yield return null;
     }
 
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit(); // 어플리케이션 종료
+        #endif
+    }
 }
